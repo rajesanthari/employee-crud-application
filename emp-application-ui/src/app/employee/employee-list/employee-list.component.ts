@@ -38,7 +38,10 @@ export class EmployeeListComponent implements OnInit,OnDestroy {
   }
 
   deleteEmployee(id: number) {
-    
+    this.employeeService.deleteEmployee(id).subscribe(data => {
+      alert("Employee " + data.firstName + " deleted");
+      this.refereshEmployeeList();
+    })
   }
 
   ngOnDestroy(): void {
