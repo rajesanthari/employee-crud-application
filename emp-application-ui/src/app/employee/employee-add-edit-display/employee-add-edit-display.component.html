@@ -1,0 +1,48 @@
+<h1 *ngIf="!!this.isEdit">Employee info: {{employeeInfo.firstName}}</h1>
+<form [formGroup]="employeeForm" (ngSubmit)="saveEmployee()">
+<table>
+    <tr>
+        <th>First Name</th>
+        <td *ngIf="!this.isEditAdd">{{employeeInfo.firstName}}</td>
+        <td *ngIf="!!this.isEditAdd">
+            <input type="text" name="firstName" formControlName="firstName">
+        </td>
+    </tr>
+    <tr>
+        <th>Last Name</th>
+        <td *ngIf="!this.isEditAdd">{{employeeInfo.lastName}}</td>
+        <td *ngIf="!!this.isEditAdd">
+            <input type="text" name="lastName" formControlName="lastName">
+        </td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td *ngIf="!this.isEditAdd">{{employeeInfo.email}}</td>
+        <td *ngIf="!!this.isEditAdd">
+            <input type="email" name="email" formControlName="email">
+        </td>
+    </tr>
+    <tr>
+        <th>Mobile</th>
+        <td *ngIf="!this.isEditAdd">{{employeeInfo.mobile}}</td>
+        <td *ngIf="!!this.isEditAdd">
+            <input type="number" name="mobile" formControlName="mobile">
+        </td>
+    </tr>
+    <tr>
+        <th>Salary</th>
+        <td *ngIf="!this.isEditAdd">{{employeeInfo.salary}}</td>
+        <td *ngIf="!!this.isEditAdd">
+            <input type="number" name="salary" formControlName="salary">
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2">
+            <button type="button" *ngIf="!this.isEditAdd" (click)="editEmployee(employeeInfo.id)">Edit</button>
+            <button type="submit" *ngIf="!!this.isEditAdd" [disabled]="employeeForm.invalid"  >{{this.isEdit ?'Update':'Add'}}</button>
+            <button type="button" (click)="redirectToEmployeeList()">Back</button>
+        </th>
+    </tr>
+
+</table>
+</form>
