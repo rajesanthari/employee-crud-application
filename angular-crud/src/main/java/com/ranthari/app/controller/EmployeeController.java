@@ -1,4 +1,4 @@
-package com.ranthari.app;
+package com.ranthari.app.controller;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ranthari.app.model.Employee;
+import com.ranthari.app.repository.EmployeeRepository;
 
 @RestController
 @RequestMapping("/employee")

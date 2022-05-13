@@ -1,4 +1,4 @@
-package com.ranthari.app;
+package com.ranthari.app.repository;
 
 import java.util.ArrayList;
 import java.util.List;
