@@ -26,6 +26,9 @@ public class JwtTokenUtil implements Serializable {
 
 	@Value("${jwt.token.validity:18000}")
 	public long JWT_TOKEN_VALIDITY;
+	
+	@Value("${jwt.refresh.token.validity:1800000}")
+	public long JWT_REFRESH_TOKEN_VALIDITY;
 
 	@Value("${jwt.secret}")
 	public String secret;
@@ -56,6 +59,11 @@ public class JwtTokenUtil implements Serializable {
 	private String doGenerateToken(Map<String, Object> claims, String subject) {
 		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
+				.signWith(SignatureAlgorithm.HS512, secret).compact();
+	}
+	public String doRefreshToken(Map<String, Object> claims, String subject) {
+		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
+				.setExpiration(new Date(System.currentTimeMillis() + JWT_REFRESH_TOKEN_VALIDITY))
 				.signWith(SignatureAlgorithm.HS512, secret).compact();
 	}
 
