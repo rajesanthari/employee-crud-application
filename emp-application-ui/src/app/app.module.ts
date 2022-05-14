@@ -5,23 +5,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee/employee.component';
-import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
-import { EmployeeAddEditDisplayComponent } from './employee/employee-add-edit-display/employee-add-edit-display.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './auth/header/header.component';
+import { FooterComponent } from './auth/footer/footer.component';
+import { HomeComponent } from './auth/home/home.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeComponent,
-    EmployeeListComponent,
-    EmployeeAddEditDisplayComponent
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -84,7 +84,7 @@ export class EmployeeAddEditDisplayComponent implements OnInit, OnDestroy {
   }
 
   redirectToEmployeeList() {
-    this.router.navigate(['employee']);
+    this.router.navigate(['auth','employee']);
   }
 
 }

@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EmployeeAddEditDisplayComponent } from './employee/employee-add-edit-display/employee-add-edit-display.component';
-import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
+import { HomeComponent } from './auth/home/home.component';
+import { AutheGuardService } from './common/shared/auth.guard.service';
 import { EmployeeComponent } from './employee/employee.component';
 
-const routes: Routes = [
-  {path:'', pathMatch:'full',redirectTo:'/employee'},
-  {path:'employee', component:EmployeeComponent, children: [
-    {path:'', component:EmployeeListComponent},
-    {path:'add', component:EmployeeAddEditDisplayComponent, data:{isAdd:true}},
-    {path:':id', component:EmployeeAddEditDisplayComponent, data:{isEdit:false}},
-    {path:':id/edit', component:EmployeeAddEditDisplayComponent, data:{isEdit:true}}
-    
+const routes: Routes = [ 
+  {path:'', pathMatch:'full',redirectTo:'/auth'},
+  {path:'login',loadChildren: () => import('./common/login/login.module').then(x => x.LoginModule)},
+  {path:'auth', component:HomeComponent, canActivate:[AutheGuardService] , children:[
+    {path:'employee', component:EmployeeComponent, loadChildren: () => import('./employee/employee.module').then(x => x.EmployeeModule) }
   ]},
   
 ];
