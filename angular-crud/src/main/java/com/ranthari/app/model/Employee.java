@@ -32,4 +32,12 @@ public class Employee {
 		this.salary = emp.salary;
 	}
 
+	public Employee(String firstName, String lastName, String email, String mobile, Integer salary) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobile = mobile;
+		this.salary = salary;
+	}
+
 }
