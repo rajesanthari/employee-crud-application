@@ -1,3 +1,19 @@
-<a [routerLink]="['employee']" routerLinkActive="highlight">Employee</a>
-<a [routerLink]="['project']" routerLinkActive="highlight">Projects</a>
-<a (click)="logOut()">Logout</a>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+           
+            <a href="#" class="navbar-brand">Employee Application</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+            <li routerLinkActive="active"><a [routerLink]="['employee']">Employee</a></li>
+            <li  routerLinkActive="active"><a [routerLink]="['project']">Projects</a></li>
+            <li  routerLinkActive="active"><a [routerLink]="['/logout']">
+                <span class="glyphicon glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a></li>
+        </ul>
+        </div>
+    </div>
+</nav>
+
