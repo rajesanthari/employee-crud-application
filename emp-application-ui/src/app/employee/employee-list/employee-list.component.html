@@ -1,27 +1,39 @@
-<table>
-    <caption>
-        <button type="button" (click)="addEmployee()">Add</button>
-    </caption>
-    <tr>
-        <th>Id</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Mobile</th>
-        <th>Salary</th>
-        <th>Action</th>
-    </tr>
-    <tr *ngFor="let employee of employeeList;">
-        <td>{{employee.id}}</td>
-        <td>{{employee.firstName}}</td>
-        <td>{{employee.lastName}}</td>
-        <td>{{employee.email}}</td>
-        <td>{{employee.mobile}}</td>
-        <td>{{employee.salary}}</td>
-        <td>
-            <button type="button" (click)="viewEmployee(employee.id)">View</button>
-            <button type="button" (click)="editEmployee(employee.id)">Edit</button>
-            <button type="button" (click)="deleteEmployee(employee.id)">Delete</button>
-        </td>
-    </tr>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Salary</th>
+            <th>
+                Action
+                <button type="button" class="btn btn-success" (click)="addEmployee()">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employeeList;">
+            <td>{{employee.id}}</td>
+            <td>{{employee.firstName}}</td>
+            <td>{{employee.lastName}}</td>
+            <td>{{employee.email}}</td>
+            <td>{{employee.mobile}}</td>
+            <td>{{employee.salary}}</td>
+            <td class="actions">
+                <button type="button" class="btn btn-primary" (click)="viewEmployee(employee.id)">
+                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                </button>
+                <button type="button"  class="btn btn-warning" (click)="editEmployee(employee.id)">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-danger" (click)="deleteEmployee(employee.id)">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </button>
+            </td>
+        </tr>
+    </tbody>
 </table>

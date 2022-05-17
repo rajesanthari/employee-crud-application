@@ -4,7 +4,7 @@ import { EmployeeAddEditDisplayComponent } from "./employee-add-edit-display/emp
 import { EmployeeListComponent } from "./employee-list/employee-list.component";
 
 const routes:Routes = [
-    {path:'', component:EmployeeListComponent},
+      {path:'', component:EmployeeListComponent, pathMatch:'full'},
       {path:'add', component:EmployeeAddEditDisplayComponent, data:{isAdd:true}},
       {path:':id', component:EmployeeAddEditDisplayComponent, data:{isEdit:false}},
       {path:':id/edit', component:EmployeeAddEditDisplayComponent, data:{isEdit:true}}

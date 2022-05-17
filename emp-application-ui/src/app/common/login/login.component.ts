@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
-import { StoreService } from '../shared/store.service';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder:FormBuilder, private router:Router,private authService:AuthService) { }
 
   ngOnInit(): void {
+    console.log("in login")
     this.navigateToAuth();
     this.userForm = this.formBuilder.group({
       userName:['',[Validators.required, Validators.minLength(5)]],
