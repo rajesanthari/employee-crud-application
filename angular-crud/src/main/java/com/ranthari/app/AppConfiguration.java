@@ -1,5 +1,7 @@
 package com.ranthari.app;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -17,7 +19,10 @@ public class AppConfiguration {
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+		CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
+		//Reference: https://stackoverflow.com/questions/49333762/spring-security-cors-doesnt-work-for-http-put-method
+		corsConfiguration.setAllowedMethods(List.of("GET","POST","PUT","DELETE"));
+		source.registerCorsConfiguration("/**", corsConfiguration);
 		return source;
 	}
 	

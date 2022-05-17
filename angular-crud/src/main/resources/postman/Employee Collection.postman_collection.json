@@ -6,6 +6,60 @@
 	},
 	"item": [
 		{
+			"name": "Authentication",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}:{{port}}/authenticate",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "isRefreshToken",
+						"value": "true",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}:{{port}}/refreshToken",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"refreshToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get all Employees",
 			"request": {
 				"method": "GET",
@@ -103,20 +157,30 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{host}}:{{port}}/{{resource}}/3",
+					"raw": "{{host}}:{{port}}/{{resource}}/102",
 					"host": [
 						"{{host}}"
 					],
 					"port": "{{port}}",
 					"path": [
 						"{{resource}}",
-						"3"
+						"102"
 					]
 				}
 			},
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MjU1MzY2MywiaWF0IjoxNjUyNTUyMTYzfQ.sGpERyeF1N6WRDhWKdvIHEojZ8g26OJVdjmzBq_2KRzSSQRmlnicxQ1yMk0nKWddRlvFBLB_lF9gglBOH15KOA",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
