@@ -3,6 +3,7 @@ package com.ranthari.app.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.ranthari.app.model.Employee;
@@ -15,7 +16,7 @@ public class EmployeeService {
 	EmployeeRepository empRepository;
 
 	public List<Employee> getAllEmployees() {
-		return empRepository.findAll();
+		return empRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 
 	public Employee getAllEmployeeById(Long id) {
