@@ -7,8 +7,10 @@ export const environment = {
   restapiinfo: {
     endpoint_url: 'http://localhost:9553',
     resources: {
-      employee: '/employee' 
-    }
+      employee: '/employee',
+      authenticate:'/authenticate',
+      refresh_token:'/refreshToken' 
+    },
   }
 };
 

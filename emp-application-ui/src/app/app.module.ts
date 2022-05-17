@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,6 +8,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { HeaderComponent } from './auth/header/header.component';
 import { FooterComponent } from './auth/footer/footer.component';
 import { HomeComponent } from './auth/home/home.component';
+import { AppHttpInterceptor } from './common/shared/http.interceptors';
 
 
 @NgModule({
@@ -24,7 +25,9 @@ import { HomeComponent } from './auth/home/home.component';
     HttpClientModule,
     
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS, useClass:AppHttpInterceptor, multi:true} 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
