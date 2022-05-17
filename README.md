@@ -11,4 +11,4 @@ Employee List
 [![Employee List](images/Employee_list.jpg)](images/Employee_list.jpg)
 Employee Add/Edit
 [![Add Employee](images/Add%20Employee.jpg)](images/Add%20Employee.jpg)
-[![Edit Employee](images/Employee_list.jpg)](images/Employee Edit.jpg)
+[![Edit Employee](images/Employee%20Edit.jpg)](images/Employee%20Edit.jpg)
