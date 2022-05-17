@@ -1,7 +1,11 @@
-<form [formGroup]="userForm" (ngSubmit)="onLoginClick()">
-
-    <input type="text" name="userName" formControlName="userName" placeholder="User Name"> <br />
-    <input type="password" name="password" formControlName="password" placeholder="Password"><br />
-    <button type="submit" [disabled]="userForm.invalid">Login</button>
-
-</form>
+<div class="container">
+    <form class="form-signin"  [formGroup]="userForm" (ngSubmit)="onLoginClick()">
+        <h2 class="form-header" >Sign in</h2>
+        <label for="userName" class="sr-only">User name</label>
+        <input type="text" id="userName" name="userName" formControlName="userName" class="form-control" placeholder="User Name" autocomplete="false" autofocus> <br />
+        <label for="password"  class="sr-only">Password</label>
+        <input type="password" id="password" name="password" formControlName="password" class="form-control" placeholder="Password"><br />
+        <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="userForm.invalid">Login</button>
+    
+    </form>
+</div>

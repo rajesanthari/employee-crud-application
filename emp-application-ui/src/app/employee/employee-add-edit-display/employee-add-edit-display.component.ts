@@ -52,7 +52,7 @@ export class EmployeeAddEditDisplayComponent implements OnInit, OnDestroy {
 
     this.employeeForm = this.formbuilder.group({
       firstName: [employeeInfo?.firstName || '', [Validators.required, Validators.minLength(5)]],
-      lastName: [employeeInfo?.lastName || '', [Validators.required, Validators.minLength(5)]],
+      lastName: [employeeInfo?.lastName || '', [Validators.required, Validators.minLength(1)]],
       email: [employeeInfo?.email || '', [Validators.required, Validators.email]],
       mobile: [employeeInfo?.mobile || '', [Validators.required, Validators.minLength(10)]],
       salary: [employeeInfo?.salary || '', [Validators.required]]

@@ -11,12 +11,9 @@ export class HomeComponent implements OnInit {
   constructor(private router:Router,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    // Authentication
-    // isAuth
-    this.router.navigate(['employee'],{relativeTo:this.activatedRoute});
-    // else
-
-
+    if ( window.location.href.endsWith('/auth') ) {
+      this.router.navigate(['employee'],{relativeTo:this.activatedRoute});
+    }
   }
 
 }
