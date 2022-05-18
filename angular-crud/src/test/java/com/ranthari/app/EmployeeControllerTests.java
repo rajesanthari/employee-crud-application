@@ -30,7 +30,7 @@ class EmployeeControllerTests {
 	ObjectMapper objMapper = new ObjectMapper();
 
 	@Before
-	private void setup() {
+	public void setup() {
 		mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
 		System.out.println(mockMvc);
 	}
