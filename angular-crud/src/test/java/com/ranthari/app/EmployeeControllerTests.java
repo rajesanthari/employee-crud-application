@@ -1,7 +1,10 @@
 package com.ranthari.app;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -44,6 +47,18 @@ class EmployeeControllerTests {
 				.andExpect(status().isOk()).andReturn();
 		String resultContent = result.getResponse().getContentAsString();
 		Employee createdEmployee = objMapper.readValue(resultContent, Employee.class);
+		System.out.println(resultContent);
+		System.out.println(createdEmployee);
+	}
+	
+
+	@Test
+	void verifyAllEmmployee() throws Exception {
+		MvcResult result = mockMvc
+				.perform(get("/employee").contentType(MediaType.APPLICATION_JSON_VALUE))
+				.andExpect(status().isOk()).andReturn();
+		String resultContent = result.getResponse().getContentAsString();
+		List<Employee> createdEmployee = objMapper.readValue(resultContent, List.class);
 		System.out.println(resultContent);
 		System.out.println(createdEmployee);
 	}
