@@ -29,15 +29,15 @@ export class EmployeeListComponent implements OnInit,OnDestroy {
     this.router.navigate(['add'], {relativeTo:this.route} )
   }
 
-  viewEmployee(id: number) {
+  viewEmployee(id: string) {
     this.router.navigate([id], {relativeTo:this.route} )
   }
 
-  editEmployee(id: number) {
+  editEmployee(id: string) {
     this.router.navigate([id,'edit'], {relativeTo:this.route} )
   }
 
-  deleteEmployee(id: number) {
+  deleteEmployee(id: string) {
     this.employeeService.deleteEmployee(id).subscribe(data => {
       alert("Employee " + data.firstName + " deleted");
       this.refereshEmployeeList();

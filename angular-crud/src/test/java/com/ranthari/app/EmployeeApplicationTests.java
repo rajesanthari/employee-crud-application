@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -29,26 +30,27 @@ class EmployeeApplicationTests {
 
 	@Test
 	void verifyAllUsers() {
-		when(employeeRepository.findAll()).thenReturn(
-				Arrays.asList(new Employee(101L, "Rajesh", "Anthari", "rajesh@gmail.com", "9553630497", 1200),
-						new Employee(102L, "Shiva", "Kumar", "shiva@gmail.com", "9848304697", 1400),
-						new Employee(103L, "Pavindar", "B", "pavan@gmail.com", "9440094400", 1600)));
+		when(employeeRepository.findAll()).thenReturn(Arrays.asList(
+				new Employee(UUID.randomUUID().toString(), "Rajesh", "Anthari", "rajesh@gmail.com", "9553630497", 1200),
+				new Employee(UUID.randomUUID().toString(), "Shiva", "Kumar", "shiva@gmail.com", "9848304697", 1400),
+				new Employee(UUID.randomUUID().toString(), "Pavindar", "B", "pavan@gmail.com", "9440094400", 1600)));
 
 		assertEquals(3, employeeService.getAllEmployees().size());
 	}
 
 	@Test
 	void verifyUser() {
-		Employee employee = new Employee(101L, "Rajesh", "Anthari", "rajesh@gmail.com", "9553630497", 1200);
-		when(employeeRepository.findById(101L)).thenReturn(Optional.of(employee));
+		String uuid = UUID.randomUUID().toString();
+		Employee employee = new Employee(uuid, "Rajesh", "Anthari", "rajesh@gmail.com", "9553630497", 1200);
+		when(employeeRepository.findById(uuid)).thenReturn(Optional.of(employee));
 
-		assertEquals(employee, employeeService.getAllEmployeeById(101L));
+		assertEquals(employee, employeeService.getAllEmployeeById(uuid));
 	}
-
 
 	@Test
 	void verifySaveUser() {
-		Employee employee = new Employee(101L, "Rajesh", "Anthari", "rajesh@gmail.com", "9553630497", 1200);
+		String uuid = UUID.randomUUID().toString();
+		Employee employee = new Employee(uuid, "Rajesh", "Anthari", "rajesh@gmail.com", "9553630497", 1200);
 		when(employeeRepository.save(employee)).thenReturn(employee);
 
 		assertEquals(employee, employeeService.saveEmployee(employee));
@@ -56,9 +58,10 @@ class EmployeeApplicationTests {
 
 	@Test
 	void verifyDeleteUser() {
-		Employee employee = new Employee(101L, "Rajesh", "Anthari", "rajesh@gmail.com", "9553630497", 1200);
-		when(employeeRepository.findById(101L)).thenReturn(Optional.of(employee));
-		assertEquals(employee, employeeService.deleteEmployee(101L));
+		String uuid = UUID.randomUUID().toString();
+		Employee employee = new Employee(uuid, "Rajesh", "Anthari", "rajesh@gmail.com", "9553630497", 1200);
+		when(employeeRepository.findById(uuid)).thenReturn(Optional.of(employee));
+		assertEquals(employee, employeeService.deleteEmployee(uuid));
 	}
 
 }

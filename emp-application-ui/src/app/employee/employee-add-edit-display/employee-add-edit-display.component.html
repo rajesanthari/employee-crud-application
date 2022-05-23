@@ -39,7 +39,7 @@
         </tr>
         <tr>
             <th colspan="2" class="text-center">
-                <button type="button" class="btn btn-primary" *ngIf="!this.isEditAdd" (click)="editEmployee(employeeInfo.id)">
+                <button type="button" class="btn btn-primary" *ngIf="!this.isEditAdd" (click)="editEmployee()">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                 </button>
                 <button type="submit" class="btn btn-success" *ngIf="!!this.isEditAdd" [disabled]="employeeForm.invalid">
