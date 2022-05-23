@@ -1,7 +1,5 @@
 package com.ranthari.app.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ranthari.app.model.Employee;
 import com.ranthari.app.service.EmployeeService;
 
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 @RestController
 @RequestMapping("/employee")
 @CrossOrigin
@@ -25,27 +26,27 @@ public class EmployeeController {
 	EmployeeService empService;
 
 	@GetMapping
-	public List<Employee> getAllEmployees() {
+	public Flux<Employee> getAllEmployees() {
 		return empService.getAllEmployees();
 	}
 
 	@GetMapping("/{id}")
-	public Employee getAllEmployeeById(@PathVariable String id) {
+	public Mono<Employee> getAllEmployeeById(@PathVariable String id) {
 		return empService.getAllEmployeeById(id);
 	}
 
 	@PostMapping
-	public Employee saveEmployee(@RequestBody Employee emp) {
+	public Mono<Employee> saveEmployee(@RequestBody Employee emp) {
 		return empService.saveEmployee(emp);
 	}
 
 	@PutMapping("/{id}")
-	public Employee updateEmployee(@PathVariable String id, @RequestBody Employee emp) {
+	public Mono<Employee> updateEmployee(@PathVariable String id, @RequestBody Employee emp) {
 		return empService.updateEmployee(id, emp);
 	}
 
 	@DeleteMapping("/{id}")
-	public Employee deleteEmployee(@PathVariable String id) {
+	public Mono<Employee> deleteEmployee(@PathVariable String id) {
 		return empService.deleteEmployee(id);
 	}
 

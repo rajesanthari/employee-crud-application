@@ -1,78 +1,78 @@
-package com.ranthari.app.jwt.config;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import com.ranthari.app.jwt.service.JwtUserDetailsService;
-import com.ranthari.app.model.DAOUser;
-import com.ranthari.app.repository.UserRepository;
-
-@Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-	@Autowired
-	private JwtAuthenticationEntryPoint entryPoint;
-
-	@Autowired
-	private JwtRequestFilter jwtRequestFilter;
-
-	@Autowired
-	private JwtUserDetailsService userDetailsService;
-
-	@Autowired
-	private UserRepository userRepository;
-
-	@Autowired
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-	}
-
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
-	@Bean
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable().authorizeRequests().antMatchers("/authenticate").permitAll().anyRequest()
-				.authenticated().and().exceptionHandling().authenticationEntryPoint(entryPoint).and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-	}
-
-	/**
-	 * Created a bean to check admin user existence; if not we can create a one
-	 * 
-	 * @return admin user name
-	 */
-	@Bean
-	public String validateAdminUser() {
-		DAOUser adminUser = userRepository.findByUsername("admin");
-		System.out.println("adminUser --> " + adminUser);
-
-		if (adminUser == null) {
-			userRepository.save(new DAOUser(null, "admin", passwordEncoder().encode("admin")));
-		}
-		return "admin";
-	}
-
-}
+//package com.ranthari.app.jwt.config;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Configuration;
+//import org.springframework.security.authentication.AuthenticationManager;
+//import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+//import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+//import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+//import org.springframework.security.config.http.SessionCreationPolicy;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+//
+//import com.ranthari.app.jwt.service.JwtUserDetailsService;
+//import com.ranthari.app.model.DAOUser;
+//import com.ranthari.app.repository.UserRepository;
+//
+//@Configuration
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+//public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+//
+//	@Autowired
+//	private JwtAuthenticationEntryPoint entryPoint;
+//
+//	@Autowired
+//	private JwtRequestFilter jwtRequestFilter;
+//
+//	@Autowired
+//	private JwtUserDetailsService userDetailsService;
+//
+//	@Autowired
+//	private UserRepository userRepository;
+//
+//	@Autowired
+//	@Override
+//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+//	}
+//
+//	public PasswordEncoder passwordEncoder() {
+//		return new BCryptPasswordEncoder();
+//	}
+//
+//	@Bean
+//	@Override
+//	public AuthenticationManager authenticationManagerBean() throws Exception {
+//		return super.authenticationManagerBean();
+//	}
+//
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
+//		http.cors().and().csrf().disable().authorizeRequests().antMatchers("/authenticate").permitAll().anyRequest()
+//				.authenticated().and().exceptionHandling().authenticationEntryPoint(entryPoint).and()
+//				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+//	}
+//
+//	/**
+//	 * Created a bean to check admin user existence; if not we can create a one
+//	 * 
+//	 * @return admin user name
+//	 */
+//	@Bean
+//	public String validateAdminUser() {
+//		DAOUser adminUser = userRepository.findByUsername("admin");
+//		System.out.println("adminUser --> " + adminUser);
+//
+//		if (adminUser == null) {
+//			userRepository.save(new DAOUser(null, "admin", passwordEncoder().encode("admin")));
+//		}
+//		return "admin";
+//	}
+//
+//}

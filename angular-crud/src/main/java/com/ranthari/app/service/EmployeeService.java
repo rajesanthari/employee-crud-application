@@ -1,45 +1,46 @@
 package com.ranthari.app.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.ranthari.app.model.Employee;
 import com.ranthari.app.repository.EmployeeRepository;
 
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 @Service
-@Transactional(readOnly = true)
 public class EmployeeService {
 
 	@Autowired
 	EmployeeRepository empRepository;
 
-	public List<Employee> getAllEmployees() {
+	public Flux<Employee> getAllEmployees() {
 		return empRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 
-	public Employee getAllEmployeeById(String id) {
-		return empRepository.findById(id).orElseThrow();
+	public Mono<Employee> getAllEmployeeById(String id) {
+		return empRepository.findById(id);
 	}
 
-	public Employee saveEmployee(Employee emp) {
+	public Mono<Employee> saveEmployee(Employee emp) {
 		return empRepository.save(emp);
 	}
 
-	@Transactional
-	public Employee updateEmployee(String id, Employee emp) {
-		emp.setId(id);
-		return empRepository.save(emp);
-	}
-
-	public Employee deleteEmployee(String id) {
-		Employee employee = getAllEmployeeById(id);
-		empRepository.delete(employee);
-		return employee;
+	public Mono<Employee> updateEmployee(String id, Employee emp) {
 		
+		return this.getAllEmployeeById(id).flatMap(empObj -> {
+			empObj.setEmployee(emp);
+			return empRepository.save(empObj);
+		});
+	}
+
+	public Mono<Employee> deleteEmployee(String id) {
+		Mono<Employee> employee = getAllEmployeeById(id);
+		empRepository.deleteById(id);
+		return employee;
+
 	}
 
 }
