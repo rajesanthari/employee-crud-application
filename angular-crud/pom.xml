@@ -92,7 +92,7 @@
 	<build>
 
 		<finalName>
-		emp-application
+		angular-crud
 		</finalName>
 		<plugins>
 			<plugin>
@@ -120,8 +120,7 @@
 							<build>
 								<from>openjdk:latest</from>
 								<entryPoint>
-									java -dSpring.profiles.active=container -jar
-									/application/${project.build.finalName}.jar
+									java -Dspring.profiles.active=container -jar /application/${project.build.finalName}.jar
 								</entryPoint>
 								<assembly>
 									<basedir>
@@ -147,7 +146,7 @@
 							<run>
 								<namingStrategy>alias</namingStrategy>
 							</run>
-							<alias>${project.build.finalName}</alias>
+							<alias>${project.build.finalName}.jar</alias>
 						</image>
 					</images>
 				</configuration>
