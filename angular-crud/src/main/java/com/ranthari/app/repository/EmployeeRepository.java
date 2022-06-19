@@ -1,10 +1,10 @@
 package com.ranthari.app.repository;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.ranthari.app.model.Employee;
 
 
-public interface EmployeeRepository extends MongoRepository<Employee, String> {
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	
 }

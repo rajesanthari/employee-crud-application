@@ -30,7 +30,7 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/{id}")
-	public Employee getAllEmployeeById(@PathVariable String id) {
+	public Employee getAllEmployeeById(@PathVariable Long id) {
 		return empService.getAllEmployeeById(id);
 	}
 
@@ -40,12 +40,12 @@ public class EmployeeController {
 	}
 
 	@PutMapping("/{id}")
-	public Employee updateEmployee(@PathVariable String id, @RequestBody Employee emp) {
+	public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee emp) {
 		return empService.updateEmployee(id, emp);
 	}
 
 	@DeleteMapping("/{id}")
-	public Employee deleteEmployee(@PathVariable String id) {
+	public Employee deleteEmployee(@PathVariable Long id) {
 		return empService.deleteEmployee(id);
 	}
 

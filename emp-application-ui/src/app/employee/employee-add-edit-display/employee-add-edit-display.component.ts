@@ -38,7 +38,7 @@ export class EmployeeAddEditDisplayComponent implements OnInit, OnDestroy {
 
   }
 
-  refreshEmployeeInfo(id: string) {
+  refreshEmployeeInfo(id: number) {
     this.employeeService.getEmployeeById(id).subscribe(data => {
       this.employeeInfo = data;
       if (this.isEdit) {
@@ -66,7 +66,7 @@ export class EmployeeAddEditDisplayComponent implements OnInit, OnDestroy {
       this.employeeSubscription.unsubscribe();
     }
   }
-  editEmployee() {
+  editEmployee(id: number) {
     this.router.navigate(['edit'], { relativeTo: this.route })
   }
   saveEmployee() {

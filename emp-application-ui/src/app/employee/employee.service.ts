@@ -17,7 +17,7 @@ export class EmployeeService {
     return this.httpClient.get<Employee[]>(this.apiUrl);
   }
 
-  getEmployeeById(id: string): Observable<Employee> {
+  getEmployeeById(id: number): Observable<Employee> {
     return this.httpClient.get<Employee>(this.apiUrl + "/" + id);
   }
 
@@ -27,11 +27,11 @@ export class EmployeeService {
   }
 
 
-  updateEmployee(id: string, employee: Employee): Observable<Employee> {
+  updateEmployee(id: number, employee: Employee): Observable<Employee> {
     return this.httpClient.put<Employee>(this.apiUrl + "/" + id, employee);
   }
 
-  deleteEmployee(id: string): Observable<Employee> {
+  deleteEmployee(id: number): Observable<Employee> {
     return this.httpClient.delete<Employee>(this.apiUrl + "/" + id);
   }
 
