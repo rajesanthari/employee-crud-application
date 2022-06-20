@@ -20,7 +20,7 @@ public class EmployeeService {
 	}
 
 	public Employee getAllEmployeeById(Long id) {
-		return empRepository.findById(id).orElseThrow();
+		return empRepository.findById(id).orElse(null);
 	}
 
 	public Employee saveEmployee(Employee emp) {
